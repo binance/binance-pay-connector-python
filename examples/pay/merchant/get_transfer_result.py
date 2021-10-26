@@ -11,4 +11,4 @@ key = ""
 secret = ""
 
 client = Client(key, secret)
-response = client.query_order("123456", merchantTradeNo="23456")
+response = client.get_transfer_result("123456")

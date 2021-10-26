@@ -52,6 +52,7 @@ class API(object):
       )
       url = self.base_url + url_path
       params = {"url": url, "data": json.dumps(payload) }
+      logging.debug("payload:" +  json.dumps(payload))
       response = self._dispatch_request(http_method)(**params)
       logging.debug("raw response from server:" + response.text)
       return response.json()

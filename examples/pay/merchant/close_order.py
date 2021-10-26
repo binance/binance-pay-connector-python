@@ -11,4 +11,4 @@ key = ""
 secret = ""
 
 client = Client(key, secret)
-response = client.query_order("123456", merchantTradeNo="23456")
+response = client.close_order("123456", prepayId="122490746078691328")

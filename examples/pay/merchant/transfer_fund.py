@@ -11,4 +11,10 @@ key = ""
 secret = ""
 
 client = Client(key, secret)
-response = client.query_order("123456", merchantTradeNo="23456")
+response = client.transfer_fund(
+  "2345", # requestId
+  # "", #merchantId
+  "USDT", #currency
+  0.02, # amount
+  "TO_MAIN", # transferType
+)
