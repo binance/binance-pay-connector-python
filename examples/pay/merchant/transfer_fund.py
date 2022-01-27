@@ -12,9 +12,8 @@ secret = ""
 
 client = Client(key, secret)
 response = client.transfer_fund(
-  "2345", # requestId
-  # "", #merchantId
-  "USDT", #currency
-  0.02, # amount
-  "TO_MAIN", # transferType
+  "1241", # requestId
+  "USDT", # currency
+  "1.00", # amount
+  "TO_MAIN", # transferType, Only "TO_MAIN" OR "TO_PAY"
 )

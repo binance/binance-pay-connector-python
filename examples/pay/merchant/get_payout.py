@@ -11,4 +11,4 @@ key = ""
 secret = ""
 
 client = Client(key, secret)
-response = client.get_transfer_result("2346")
+response = client.get_payout(requestId="123458")

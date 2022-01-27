@@ -11,4 +11,4 @@ key = ""
 secret = ""
 
 client = Client(key, secret)
-response = client.get_transfer_result("2346")
+response = client.cancel_order(prepayId="122490746078691329")

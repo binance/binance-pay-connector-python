@@ -11,4 +11,4 @@ key = ""
 secret = ""
 
 client = Client(key, secret)
-response = client.close_order("123456", prepayId="122490746078691328")
+response = client.get_wallet_balance(wallet="SPOT_WALLET", currency="USDT")

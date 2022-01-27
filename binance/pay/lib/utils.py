@@ -15,4 +15,5 @@ def hashing(secrect: str, to_hashing: str):
     return hmac.new(secrect.encode('utf-8'), to_hashing.encode('utf-8'), hashlib.sha512).hexdigest().upper()
 
 def config_logging(logging, logging_devel, log_file=None):
+    
     logging.basicConfig(level=logging_devel, filename=log_file)

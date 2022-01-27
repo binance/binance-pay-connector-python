@@ -55,7 +55,12 @@ class API(object):
       logging.debug("payload:" +  json.dumps(payload))
       response = self._dispatch_request(http_method)(**params)
       logging.debug("raw response from server:" + response.text)
-      return response.json()
+      try:
+        data = response.json()
+      except ValueError:
+        data = response.text
+      
+      return data
 
     def _dispatch_request(self, http_method):
       return {

@@ -11,4 +11,4 @@ key = ""
 secret = ""
 
 client = Client(key, secret)
-response = client.get_transfer_result("2346")
+response = client.new_sub_merchant(merchantName="test_merchant", merchantType=1, merchantMcc="MCC_Code", country="GO,NZ")
