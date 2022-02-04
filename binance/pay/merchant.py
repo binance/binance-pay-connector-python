@@ -1,5 +1,5 @@
 from binance.pay.api import API
-from binance.pay.lib.utils import check_required_parameters
+from binance.pay.lib.utils import check_required_parameters, check_required_parameter
 
 class Merchant(API):
   def __init__(self, key=None, secret=None, **kwargs):
@@ -144,6 +144,8 @@ class Merchant(API):
     Args:
       tranId (str) : the value of requestId of provoking Transfer Fund API
     """
+    
+    check_required_parameter(tranId, 'tranId')
 
     params = {
       "tranId": tranId,
@@ -184,6 +186,13 @@ class Merchant(API):
       contractTimeIsv (integer, optional)
     """
 
+    check_required_parameters([
+      [merchantName, "merchantName"], 
+      [merchantType, "merchantType"],
+      [merchantMcc, "merchantMcc"],
+      [country, "country"]
+    ])
+
     params = {
       "merchantName": merchantName,
       "merchantType": merchantType,
@@ -204,12 +213,18 @@ class Merchant(API):
     https://developers.binance.com/docs/binance-pay/api-order-refund
 
     Args:
-      refundRequestId (str)
-      prepayId (str)
-      refundAmount (float)
+      refundRequestId (str) : The unique ID assigned by the merchant to identify a refund request.The value must be same for one refund request.
+      prepayId (str) : The unique ID assigned by Binance for the original order to be refunded.
+      refundAmount (float) : You can perform multiple partial refunds, but their sum should not exceed the order amount.
     Keyword Args:
       refundReason (string, optional)
     """
+
+    check_required_parameters([
+      [refundRequestId, "refundRequestId"], 
+      [prepayId, "prepayId"],
+      [refundAmount, "refundAmount"]
+    ])
 
     params = {
       "refundRequestId": refundRequestId,
@@ -233,6 +248,8 @@ class Merchant(API):
       refundRequestId (str): The unique ID assigned by the merchant to identify a refund request.
     """
 
+    check_required_parameter(refundRequestId, 'refundRequestId')
+
     params = {
       "refundRequestId": refundRequestId,
       **kwargs
@@ -240,7 +257,7 @@ class Merchant(API):
     return self.send_signed_request("POST", '/binancepay/openapi/order/refund/query', params)
 
 
-  def batch_payout(self, params):
+  def batch_payout(self, requestId: str, batchName: str, currency: str, totalAmount: float, totalNumber: int, transferDetailList: dict, **kwargs):
     """Batch Payout
 
     Payout API used for Merchant/Partner to make transfers in batch.
@@ -252,7 +269,7 @@ class Merchant(API):
     Args:
       requestId (str): The unique ID assigned by the merchant to identify a payout request.
       bizScene (str, optional)
-      batchName (str)
+      batchName (str) : The name of the batch payout.
       currency (str): Crypto token only, fiat NOT supported. All characters must be in uppercase
       totalAmount (float)
       totalNumber (integer)
@@ -263,7 +280,29 @@ class Merchant(API):
         transferAmount (float)
         transferMethod (str) : FUNDING_WALLET, SPOT_WALLET
         remark (str)
+    Keyword Args:
+      bizScene (string, optional)
     """
+
+    check_required_parameters([
+      [requestId, "requestId"], 
+      [batchName, "batchName"],
+      [currency, "currency"],
+      [totalAmount, "totalAmount"],
+      [totalNumber, "totalNumber"],
+      [transferDetailList, "transferDetailList"]
+    ])
+
+    params = {
+      "requestId": requestId,
+      "batchName": batchName,
+      "currency": currency,
+      "totalAmount": totalAmount,
+      "totalNumber": totalNumber,
+      "transferDetailList": transferDetailList,
+      **kwargs
+    }
+
     return self.send_signed_request("POST", '/binancepay/openapi/payout/transfer', params)
 
   def get_wallet_balance(self, wallet: str, currency: str, **kwargs):

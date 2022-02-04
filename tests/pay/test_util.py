@@ -17,7 +17,6 @@ def test_failed_when_required_parameter_is_none():
         ParameterRequiredError
     )
 
-
 def test_failed_when_required_parameter_is_empty():
     check_required_parameter.when.called_with("", "symbol").should.throw(
         ParameterRequiredError

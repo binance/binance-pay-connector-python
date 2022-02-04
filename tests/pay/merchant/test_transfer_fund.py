@@ -10,13 +10,6 @@ key = random_str()
 secret = random_str()
 
 
-mock_error_response = {
-    "status": "FAIL",
-    "code": "400100",
-    "errorMessage": "A mandatory parameter was not sent, was empty/null, or malformed."
-}
-
-
 @mock_http_response(responses.POST, "/binancepay/openapi/wallet/transfer", mock_response, 200)
 def test_transfer_fund():
     """Tests the API endpoint to transfer funds"""
