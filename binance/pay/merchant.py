@@ -319,6 +319,11 @@ class Merchant(API):
       currency (str): Currency to query, e.g, "BUSD"
     """
 
+    check_required_parameters([
+      [wallet, "wallet"], 
+      [currency, "currency"]
+    ])
+    
     params = {
       "wallet": wallet,
       "currency": currency,
@@ -341,6 +346,8 @@ class Merchant(API):
     Keyword Args:
       detailStatus (str)
     """
+
+    check_required_parameter(requestId, 'requestId')
 
     params = {
       "requestId": requestId,
