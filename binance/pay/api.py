@@ -1,8 +1,5 @@
-import hmac
 import json
 import logging
-import hashlib
-from json import JSONDecodeError
 import requests
 from .__version__ import __version__
 

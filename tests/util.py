@@ -1,6 +1,5 @@
 import re
 import responses
-import json
 import uuid
 import random
 

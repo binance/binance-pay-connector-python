@@ -2,7 +2,7 @@ import responses
 import json
 from binance.pay.merchant import Merchant as Client
 from tests.util import mock_http_response
-from tests.util import random_str, random_int
+from tests.util import random_str
 from binance.pay.error import ParameterRequiredError
 
 mock_response = {"key_1": "value_1", "key_2": "value_2"}
