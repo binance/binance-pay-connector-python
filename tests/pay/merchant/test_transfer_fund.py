@@ -1,4 +1,4 @@
-import responses 
+import responses
 import json
 from binance.pay.merchant import Merchant as Client
 from tests.util import mock_http_response
@@ -10,11 +10,13 @@ key = random_str()
 secret = random_str()
 
 
-@mock_http_response(responses.POST, "/binancepay/openapi/wallet/transfer", mock_response, 200)
+@mock_http_response(
+    responses.POST, "/binancepay/openapi/wallet/transfer", mock_response, 200
+)
 def test_transfer_fund():
     """Tests the API endpoint to transfer funds"""
 
-    params = { 
+    params = {
         "requestId": random_str(),
         "currency": "BUSD",
         "amount": str(random_int()),
@@ -30,7 +32,7 @@ def test_transfer_fund():
 def test_transfer_fund_without_requestId():
     """Tests the API endpoint to transfer funds without requestId"""
 
-    params = { 
+    params = {
         "requestId": "",
         "currency": "BUSD",
         "amount": str(random_int()),
@@ -43,7 +45,7 @@ def test_transfer_fund_without_requestId():
 def test_transfer_fund_without_currency():
     """Tests the API endpoint to transfer funds without currency"""
 
-    params = { 
+    params = {
         "requestId": random_str(),
         "currency": "",
         "amount": str(random_int()),
@@ -56,7 +58,7 @@ def test_transfer_fund_without_currency():
 def test_transfer_fund_without_amount():
     """Tests the API endpoint to transfer funds without amount"""
 
-    params = { 
+    params = {
         "requestId": random_str(),
         "currency": "BUSD",
         "amount": "",
@@ -69,7 +71,7 @@ def test_transfer_fund_without_amount():
 def test_transfer_fund_without_transferType():
     """Tests the API endpoint to transfer funds without transferType"""
 
-    params = { 
+    params = {
         "requestId": random_str(),
         "currency": "BUSD",
         "amount": str(random_int()),

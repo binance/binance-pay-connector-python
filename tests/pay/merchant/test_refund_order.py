@@ -1,4 +1,4 @@
-import responses 
+import responses
 import json
 from binance.pay.merchant import Merchant as Client
 from tests.util import mock_http_response
@@ -10,11 +10,13 @@ key = random_str()
 secret = random_str()
 
 
-@mock_http_response(responses.POST, "/binancepay/openapi/order/refund", mock_response, 200)
+@mock_http_response(
+    responses.POST, "/binancepay/openapi/order/refund", mock_response, 200
+)
 def test_refund_order():
     """Tests the API endpoint to refund order"""
 
-    params = { 
+    params = {
         "refundRequestId": random_str(),
         "prepayId": random_str(),
         "refundAmount": random_int(),
@@ -30,7 +32,7 @@ def test_refund_order():
 def test_refund_order_without_refundRequestId():
     """Tests the API endpoint to refund order without refundRequestId"""
 
-    params = { 
+    params = {
         "refundRequestId": "",
         "prepayId": random_str(),
         "refundAmount": random_int(),
@@ -43,7 +45,7 @@ def test_refund_order_without_refundRequestId():
 def test_refund_order_without_prepayId():
     """Tests the API endpoint to refund order without prepayId"""
 
-    params = { 
+    params = {
         "refundRequestId": random_str(),
         "prepayId": "",
         "refundAmount": random_int(),
@@ -52,10 +54,11 @@ def test_refund_order_without_prepayId():
     client = Client(key, secret)
     client.refund_order.when.called_with(**params).should.throw(ParameterRequiredError)
 
+
 def test_refund_order_without_refundAmount():
     """Tests the API endpoint to refund order without refundAmount"""
 
-    params = { 
+    params = {
         "refundRequestId": random_str(),
         "prepayId": random_str(),
         "refundAmount": "",

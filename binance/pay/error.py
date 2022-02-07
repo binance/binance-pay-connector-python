@@ -1,4 +1,3 @@
-
 class Error(Exception):
     pass
 

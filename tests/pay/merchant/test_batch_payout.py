@@ -1,4 +1,4 @@
-import responses 
+import responses
 import json
 from binance.pay.merchant import Merchant as Client
 from tests.util import mock_http_response
@@ -10,11 +10,13 @@ key = random_str()
 secret = random_str()
 
 
-@mock_http_response(responses.POST, "/binancepay/openapi/payout/transfer", mock_response, 200)
+@mock_http_response(
+    responses.POST, "/binancepay/openapi/payout/transfer", mock_response, 200
+)
 def test_batch_payout():
     """Tests the API endpoint to batch payout"""
 
-    params = { 
+    params = {
         "requestId": random_str(),
         "batchName": random_str(),
         "currency": random_str(),
@@ -22,10 +24,10 @@ def test_batch_payout():
         "totalNumber": random_int(),
         "transferDetailList": {
             "merchantSendId": random_str(),
-            "receiveType" : "PAY_ID",
+            "receiveType": "PAY_ID",
             "receiver": random_str(),
             "transferAmount": random_int(),
-            "transferMethod": "FUNDING_WALLET"
+            "transferMethod": "FUNDING_WALLET",
         },
     }
     client = Client(key, secret)
@@ -38,7 +40,7 @@ def test_batch_payout():
 def test_batch_payout_without_requestId():
     """Tests the API endpoint to batch payout without requestId"""
 
-    params = { 
+    params = {
         "requestId": "",
         "batchName": random_str(),
         "currency": random_str(),
@@ -46,20 +48,21 @@ def test_batch_payout_without_requestId():
         "totalNumber": random_int(),
         "transferDetailList": {
             "merchantSendId": random_str(),
-            "receiveType" : "PAY_ID",
+            "receiveType": "PAY_ID",
             "receiver": random_str(),
             "transferAmount": random_int(),
-            "transferMethod": "FUNDING_WALLET"
+            "transferMethod": "FUNDING_WALLET",
         },
     }
 
     client = Client(key, secret)
     client.batch_payout.when.called_with(**params).should.throw(ParameterRequiredError)
 
+
 def test_batch_payout_without_batchName():
     """Tests the API endpoint to batch payout without batchName"""
 
-    params = { 
+    params = {
         "requestId": random_str(),
         "batchName": "",
         "currency": random_str(),
@@ -67,20 +70,21 @@ def test_batch_payout_without_batchName():
         "totalNumber": random_int(),
         "transferDetailList": {
             "merchantSendId": random_str(),
-            "receiveType" : "PAY_ID",
+            "receiveType": "PAY_ID",
             "receiver": random_str(),
             "transferAmount": random_int(),
-            "transferMethod": "FUNDING_WALLET"
+            "transferMethod": "FUNDING_WALLET",
         },
     }
 
     client = Client(key, secret)
     client.batch_payout.when.called_with(**params).should.throw(ParameterRequiredError)
 
+
 def test_batch_payout_without_currency():
     """Tests the API endpoint to batch payout without currency"""
 
-    params = { 
+    params = {
         "requestId": random_str(),
         "batchName": random_str(),
         "currency": "",
@@ -88,20 +92,21 @@ def test_batch_payout_without_currency():
         "totalNumber": random_int(),
         "transferDetailList": {
             "merchantSendId": random_str(),
-            "receiveType" : "PAY_ID",
+            "receiveType": "PAY_ID",
             "receiver": random_str(),
             "transferAmount": random_int(),
-            "transferMethod": "FUNDING_WALLET"
+            "transferMethod": "FUNDING_WALLET",
         },
     }
 
     client = Client(key, secret)
     client.batch_payout.when.called_with(**params).should.throw(ParameterRequiredError)
 
+
 def test_batch_payout_without_totalAmount():
     """Tests the API endpoint to batch payout without totalAmount"""
 
-    params = { 
+    params = {
         "requestId": random_str(),
         "batchName": random_str(),
         "currency": random_str(),
@@ -109,20 +114,21 @@ def test_batch_payout_without_totalAmount():
         "totalNumber": random_int(),
         "transferDetailList": {
             "merchantSendId": random_str(),
-            "receiveType" : "PAY_ID",
+            "receiveType": "PAY_ID",
             "receiver": random_str(),
             "transferAmount": random_int(),
-            "transferMethod": "FUNDING_WALLET"
+            "transferMethod": "FUNDING_WALLET",
         },
     }
 
     client = Client(key, secret)
     client.batch_payout.when.called_with(**params).should.throw(ParameterRequiredError)
 
+
 def test_batch_payout_without_totalNumber():
     """Tests the API endpoint to batch payout without totalNumber"""
 
-    params = { 
+    params = {
         "requestId": random_str(),
         "batchName": random_str(),
         "currency": random_str(),
@@ -130,10 +136,10 @@ def test_batch_payout_without_totalNumber():
         "totalNumber": "",
         "transferDetailList": {
             "merchantSendId": random_str(),
-            "receiveType" : "PAY_ID",
+            "receiveType": "PAY_ID",
             "receiver": random_str(),
             "transferAmount": random_int(),
-            "transferMethod": "FUNDING_WALLET"
+            "transferMethod": "FUNDING_WALLET",
         },
     }
 
@@ -144,7 +150,7 @@ def test_batch_payout_without_totalNumber():
 def test_batch_payout_without_transferDetailList():
     """Tests the API endpoint to batch payout without transferDetailList"""
 
-    params = { 
+    params = {
         "requestId": random_str(),
         "batchName": random_str(),
         "currency": random_str(),

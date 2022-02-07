@@ -4,11 +4,13 @@ import json
 import uuid
 import random
 
+
 def random_str() -> str:
-  return uuid.uuid4().hex
+    return uuid.uuid4().hex
+
 
 def random_int() -> int:
-  return random.randint(1, 100000000)
+    return random.randint(1, 100000000)
 
 
 def mock_http_response(
@@ -28,5 +30,7 @@ def mock_http_response(
                 headers=headers,
             )
             return fn(*args, **kwargs)
+
         return wrapper
+
     return decorator

@@ -1,4 +1,4 @@
-import responses 
+import responses
 import json
 from binance.pay.merchant import Merchant as Client
 from tests.util import mock_http_response
@@ -7,10 +7,12 @@ from tests.util import random_str, random_int
 mock_response = {"key_1": "value_1", "key_2": "value_2"}
 key = random_str()
 secret = random_str()
-params = { "prepayId": str(random_int()) }
+params = {"prepayId": str(random_int())}
 
 
-@mock_http_response(responses.POST, "/binancepay/openapi/v2/order/query", mock_response, 200)
+@mock_http_response(
+    responses.POST, "/binancepay/openapi/v2/order/query", mock_response, 200
+)
 def test_get_order():
     """Tests the API endpoint to get order info"""
 
