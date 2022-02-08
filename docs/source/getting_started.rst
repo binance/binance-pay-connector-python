@@ -80,7 +80,7 @@ Test Case
 .. code-block:: python
 
    # In case packages are not installed yet
-   pip install -r requirements-test.txt
+   pip install -r requirements/requirements-test.txt
 
    pytest
 

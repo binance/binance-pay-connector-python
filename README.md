@@ -57,7 +57,7 @@ If a request has a parameter that is not provided but required from server, this
 
 ```python
 # In case packages are not installed yet
-pip install -r requirements-test.txt
+pip install -r requirements/requirements-test.txt
 
 pytest
 ```
