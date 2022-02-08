@@ -2,7 +2,7 @@
 [![Python 3.6](https://img.shields.io/badge/python-3.6+-blue.svg)](https://www.python.org/downloads/release/python-360/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-This is a lightweight library that works as a connector to [Binance pay public API](https://developers.binance.com/docs/binance-pay/introduction)
+This is a lightweight library that works as a connector to [Binance Pay public API](https://developers.binance.com/docs/binance-pay/introduction)
 
 ## Installation
 

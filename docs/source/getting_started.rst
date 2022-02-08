@@ -16,7 +16,7 @@ Getting Started
    :alt: License: MIT
 
 
-This is a lightweight library that works as a connector to `Binance pay public API <https://developers.binance.com/docs/binance-pay/introduction>`_
+This is a lightweight library that works as a connector to `Binance Pay public API <https://developers.binance.com/docs/binance-pay/introduction>`_
 
 Installation
 ------------
