@@ -16,56 +16,47 @@ class Merchant(API):
         Create order API Version 2 used for merchant/partner to initiate acquiring order.
         https://developers.binance.com/docs/binance-pay/api-order-create-v2
 
-        Keyword Args:
-          merchant
-            subMerchantId (string, optional)
-          env
-            terminalType (string)
-            osType (string, optional)
-            orderClientIp (string, optional)
-            cookieId (string, optional)
-          merchantTradeNo (string)
+        Args:
+          merchant.subMerchantId (str, optional)
+          env.terminalType (str)
+          env.osType (str, optional)
+          env.orderClientIp (str, optional)
+          env.cookieId (str, optional)
+          merchantTradeNo (str)
           orderAmount (float)
-          currency (string)
-          goods
-            goodsType (string)
-            goodsCategory (string)
-            referenceGoodsId (string)
-            goodsName (string)
-            goodsDetail (string)
-            goodsUnitAmount
-              currency (string)
-              amount (float)
-            goodsQuantity (string, optional)
-          shipping
-            shippingName
-              firstName (string)
-              middleName (string, optional)
-              lastName (string)
-            shippingAddress
-              region (string)
-              state (string, optional)
-              city (string, optional)
-              address (string, optional)
-              zipCode (string, optional)
-              shippingAddressType (string, optional)
-            shippingPhoneNo (string, optional)
-          buyer
-            referenceBuyerId (string, optional)
-            buyerName
-              firstName (string)
-              middleName (string, optional)
-              lastName (string)
-            buyerPhoneCountryCode (string, optional)
-            buyerPhoneNo (string, optional)
-            buyerEmail (string, optional)
-            buyerRegistrationTime (string, optional)
-            buyerBrowserLanguage (string, optional)
-          returnUrl (string, optional)
-          cancelUrl (string, optional)
-          orderExpireTime (integer, optional)
-          supportPayCurrency (string, optional)
-          appId (string, optional)
+          currency (str)
+          goods.goodsType (str)
+          goods.goodsCategory (str)
+          goods.referenceGoodsId (str)
+          goods.goodsName (str)
+          goods.goodsDetail (str)
+          goods.goodsUnitAmount.currency (str)
+          goods.goodsUnitAmount.amount (float)
+          goods.goodsQuantity (str, optional)
+          shipping.shippingName.firstName (str)
+          shipping.shippingName.middleName (str, optional)
+          shipping.shippingName.lastName (str)
+          shipping.shippingAddress.region (str)
+          shipping.shippingAddress.state (str, optional)
+          shipping.shippingAddress.city (str, optional)
+          shipping.shippingAddress.address (str, optional)
+          shipping.shippingAddress.zipCode (str, optional)
+          shipping.shippingAddress.shippingAddressType (str, optional)
+          shipping.shippingAddress.shippingPhoneNo (str, optional)
+          buyer.referenceBuyerId (str, optional)
+          buyer.buyerName.firstName (str)
+          buyer.middleName (str, optional)
+          buyer.lastName (str)
+          buyer.buyerPhoneCountryCode (str, optional)
+          buyer.buyerPhoneNo (str, optional)
+          buyer.buyerEmail (str, optional)
+          buyer.buyerRegistrationTime (str, optional)
+          buyer.buyerBrowserLanguage (str, optional)
+          returnUrl (str, optional)
+          cancelUrl (str, optional)
+          orderExpireTime (int, optional)
+          supportPayCurrency (str, optional)
+          appId (str, optional)
         """
         return self.send_signed_request("POST", "/binancepay/openapi/v2/order", params)
 
@@ -74,7 +65,7 @@ class Merchant(API):
 
         Query order API used for merchant/partner to query order status
 
-        POST /binancepay/openapi/v2/order/query
+        `POST /binancepay/openapi/v2/order/query`
 
         https://developers.binance.com/docs/binance-pay/api-order-query-v2
 
@@ -91,7 +82,7 @@ class Merchant(API):
 
         Close order API used for merchant/partner to close order without any prior payment activities triggered by user. The successful close result will be notified asynchronously through Order Notification Webhook with bizStatus = "PAY_CLOSED"
 
-        POST /binancepay/openapi/order/close
+        `POST /binancepay/openapi/order/close`
 
         https://developers.binance.com/docs/binance-pay/api-order-close
 
@@ -112,7 +103,7 @@ class Merchant(API):
 
         Fund transfer API used for merchant/partner to initiate Fund transfer between wallets.
 
-        POST /binancepay/openapi/wallet/transfer
+        `POST /binancepay/openapi/wallet/transfer`
 
         https://developers.binance.com/docs/binance-pay/api-wallet-transfer
 
@@ -120,7 +111,7 @@ class Merchant(API):
           requestId (str) : Represents the unique ID of each transfer request.Generated by the merchant
           currency (str) : 	transfer currency, e.g. "BUSD"
           amount (str) : the transfer amount
-          transferType (str) : Only "TO_MAIN" OR "TO_PAY"
+          transferType (str) : Only `TO_MAIN` OR `TO_PAY`
         """
 
         check_required_parameters(
@@ -148,7 +139,7 @@ class Merchant(API):
 
         Query Transfer Result API used for merchant/partner to query transfer result.
 
-        POST /binancepay/openapi/wallet/transfer/query
+        `POST /binancepay/openapi/wallet/transfer/query`
 
         https://developers.binance.com/docs/binance-pay/api-wallet-transfer-query
 
@@ -175,32 +166,38 @@ class Merchant(API):
 
         Create Sub-merchant API used for merchant/partner.
 
-        POST /binancepay/openapi/submerchant/add
+        `POST /binancepay/openapi/submerchant/add`
 
         https://developers.binance.com/docs/binance-pay/api-submerchant-add
 
         Args:
-          merchantName (string)
-          merchantType (integer) : 1=Personal(Individual)、2=solo proprietor、 3=Partnership、4=Private company、5=Others company
-          merchantMcc (string) : MCC Code, get from Binance
-          country (string)
+          merchantName (str) : The sub merchant name maximum length 128, unique under one mainMerchantId.
+          merchantType (int) : 
+            1=Personal(Individual) \n
+            2=solo proprietor \n
+            3=Partnership \n
+            4=Private company \n
+            5=Others company \n
+          merchantMcc (str) : MCC Code, get from Binance
+          country (str) : Country/Region of Business Operation,Can be multiple, split by "," eg:"SG,US" \n
+            iso alpha 2 country code(https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2), use "GO" if global
         Keyword Args:
-          brandLogo (string, optional)
-          address (string, optional)
-          companyName (string, optional)
-          registrationNumber (string, optional)
-          registrationCountry (string, optional)
-          registrationAddress (string, optional)
-          incorporationDate (integer, optional)
-          storeType (integer, optional)
-          siteType (integer, optional)
-          siteUrl (string, optional)
-          siteName (string, optional)
-          certificateType (integer, optional) : 1=ID 2=Passport, Required if merchantType is Individual
-          certificateCountry (string, optional)
-          certificateNumber (string, optional)
-          certificateValidDate (integer, optional)
-          contractTimeIsv (integer, optional)
+          brandLogo (str, optional) : sub merchant logo url
+          address (str, optional)
+          companyName (str, optional)
+          registrationNumber (str, optional)
+          registrationCountry (str, optional)
+          registrationAddress (str, optional)
+          incorporationDate (int, optional)
+          storeType (int, optional)
+          siteType (int, optional)
+          siteUrl (str, optional)
+          siteName (str, optional)
+          certificateType (int, optional) : 1=ID 2=Passport, Required if merchantType is Individual
+          certificateCountry (str, optional)
+          certificateNumber (str, optional)
+          certificateValidDate (int, optional)
+          contractTimeIsv (int, optional)
         """
 
         check_required_parameters(
@@ -240,7 +237,7 @@ class Merchant(API):
           prepayId (str) : The unique ID assigned by Binance for the original order to be refunded.
           refundAmount (float) : You can perform multiple partial refunds, but their sum should not exceed the order amount.
         Keyword Args:
-          refundReason (string, optional)
+          refundReason (str, optional)
         """
 
         check_required_parameters(
@@ -305,16 +302,15 @@ class Merchant(API):
           batchName (str) : The name of the batch payout.
           currency (str): Crypto token only, fiat NOT supported. All characters must be in uppercase
           totalAmount (float)
-          totalNumber (integer)
-          transferDetailList
-            merchantSendId (str)
-            receiveType (str)
-            receiver (str)
-            transferAmount (float)
-            transferMethod (str) : FUNDING_WALLET, SPOT_WALLET
-            remark (str)
+          totalNumber (int)
+          transferDetailList.merchantSendId (str)
+          transferDetailList.receiveType (str)
+          transferDetailList.receiver (str)
+          transferDetailList.transferAmount (float)
+          transferDetailList.transferMethod (str) : FUNDING_WALLET, SPOT_WALLET
+          transferDetailList.remark (str)
         Keyword Args:
-          bizScene (string, optional)
+          bizScene (str, optional)
         """
 
         check_required_parameters(

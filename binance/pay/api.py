@@ -3,7 +3,6 @@ import logging
 import requests
 from .__version__ import __version__
 
-# from binance.error import ClientError, ServerError
 from binance.pay.lib.utils import get_timestamp
 from binance.pay.lib.utils import random_string
 from binance.pay.lib.utils import hashing
@@ -11,10 +10,6 @@ from binance.pay.lib.utils import hashing
 
 class API(object):
     """API base class
-    Keyword Args:
-        base_url (str, optional): the API base url, useful to switch to testnet, etc. By default it's https://api.binance.com
-        timeout (int, optional): the time waiting for server response, number of seconds. https://docs.python-requests.org/en/master/user/advanced/#timeouts
-        proxies (obj, optional): Dictionary mapping protocol to the URL of the proxy. e.g. {'https': 'http://1.2.3.4:8080'}
     """
 
     def __init__(self, key=None, secret=None, base_url=None):
