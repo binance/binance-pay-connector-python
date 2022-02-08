@@ -1,6 +1,10 @@
 *.pyc
 __pycache__
 .DS_Store
+.tox
+*.egg-info
 
+dist
+build
 docs/build
 docs/source/_build
