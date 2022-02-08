@@ -45,8 +45,8 @@ class Merchant(API):
           shipping.shippingAddress.shippingPhoneNo (str, optional)
           buyer.referenceBuyerId (str, optional)
           buyer.buyerName.firstName (str)
-          buyer.middleName (str, optional)
-          buyer.lastName (str)
+          buyer.buyerName.middleName (str, optional)
+          buyer.buyerName.lastName (str)
           buyer.buyerPhoneCountryCode (str, optional)
           buyer.buyerPhoneNo (str, optional)
           buyer.buyerEmail (str, optional)
@@ -149,9 +149,9 @@ class Merchant(API):
 
         check_required_parameter(tranId, "tranId")
 
-        params = {"tranId": tranId, **kwargs}
+        payload = {"tranId": tranId, **kwargs}
         return self.send_signed_request(
-            "POST", "/binancepay/openapi/wallet/transfer/query", params
+            "POST", "/binancepay/openapi/wallet/transfer/query", payload
         )
 
     def new_sub_merchant(
@@ -172,7 +172,7 @@ class Merchant(API):
 
         Args:
           merchantName (str) : The sub merchant name maximum length 128, unique under one mainMerchantId.
-          merchantType (int) : 
+          merchantType (int) :
             1=Personal(Individual) \n
             2=solo proprietor \n
             3=Partnership \n
@@ -209,7 +209,7 @@ class Merchant(API):
             ]
         )
 
-        params = {
+        payload = {
             "merchantName": merchantName,
             "merchantType": merchantType,
             "merchantMcc": merchantMcc,
@@ -218,7 +218,7 @@ class Merchant(API):
         }
 
         return self.send_signed_request(
-            "POST", "/binancepay/openapi/submerchant/add", params
+            "POST", "/binancepay/openapi/submerchant/add", payload
         )
 
     def refund_order(
@@ -248,14 +248,14 @@ class Merchant(API):
             ]
         )
 
-        params = {
+        payload = {
             "refundRequestId": refundRequestId,
             "prepayId": prepayId,
             "refundAmount": refundAmount,
             **kwargs,
         }
         return self.send_signed_request(
-            "POST", "/binancepay/openapi/order/refund", params
+            "POST", "/binancepay/openapi/order/refund", payload
         )
 
     def get_refund_order(self, refundRequestId: str, **kwargs):
@@ -273,9 +273,9 @@ class Merchant(API):
 
         check_required_parameter(refundRequestId, "refundRequestId")
 
-        params = {"refundRequestId": refundRequestId, **kwargs}
+        payload = {"refundRequestId": refundRequestId, **kwargs}
         return self.send_signed_request(
-            "POST", "/binancepay/openapi/order/refund/query", params
+            "POST", "/binancepay/openapi/order/refund/query", payload
         )
 
     def batch_payout(
@@ -324,7 +324,7 @@ class Merchant(API):
             ]
         )
 
-        params = {
+        payload = {
             "requestId": requestId,
             "batchName": batchName,
             "currency": currency,
@@ -335,7 +335,7 @@ class Merchant(API):
         }
 
         return self.send_signed_request(
-            "POST", "/binancepay/openapi/payout/transfer", params
+            "POST", "/binancepay/openapi/payout/transfer", payload
         )
 
     def get_wallet_balance(self, wallet: str, currency: str, **kwargs):
@@ -354,8 +354,8 @@ class Merchant(API):
 
         check_required_parameters([[wallet, "wallet"], [currency, "currency"]])
 
-        params = {"wallet": wallet, "currency": currency, **kwargs}
-        return self.send_signed_request("POST", "/binancepay/openapi/balance", params)
+        payload = {"wallet": wallet, "currency": currency, **kwargs}
+        return self.send_signed_request("POST", "/binancepay/openapi/balance", payload)
 
     def get_payout(self, requestId: str, **kwargs):
         """Payout Query
@@ -374,7 +374,7 @@ class Merchant(API):
 
         check_required_parameter(requestId, "requestId")
 
-        params = {"requestId": requestId, **kwargs}
+        payload = {"requestId": requestId, **kwargs}
         return self.send_signed_request(
-            "POST", "/binancepay/openapi/payout/query", params
+            "POST", "/binancepay/openapi/payout/query", payload
         )

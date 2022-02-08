@@ -1,5 +1,5 @@
-Binance Pay Merchant APIs
-=========================
+Binance Pay APIs
+================
 
 Merchant Endpoints
 ==================

@@ -9,8 +9,7 @@ from binance.pay.lib.utils import hashing
 
 
 class API(object):
-    """API base class
-    """
+    """API base class"""
 
     def __init__(self, key=None, secret=None, base_url=None):
         self.key = key
