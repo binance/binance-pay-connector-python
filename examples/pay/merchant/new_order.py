@@ -32,6 +32,5 @@ parameters = {
     "buyer": {"buyerName": {"firstName": "cz", "lastName": "zhao"}},
 }
 
-
 response = client.new_order(parameters)
 print(response)
