@@ -28,7 +28,7 @@ Installation
 Documentation
 -------------
 
-`https://binance-pay-connector.readthedocs.io <https://binance-connector.readthedocs.io>`_
+`https://binance-pay-connector.readthedocs.io <https://binance-pay-connector.readthedocs.io>`_
 
 RESTful APIs
 ------------
