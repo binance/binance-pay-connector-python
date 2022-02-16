@@ -12,7 +12,7 @@ pip install binance-pay-connector
 
 ## Documentation
 
-[https://binance-pay-connector.readthedocs.io](https://binance-pay-connector.readthedocs.io)
+[https://binance-pay-connector-python.readthedocs.io](https://binance-pay-connector-python.readthedocs.io)
 
 ## RESTful APIs
 
